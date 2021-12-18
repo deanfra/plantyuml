@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  plantyuml_api:
+    build:
+      dockerfile: Dockerfile
+      context: "./server"
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    ports:
+      - 3001:3001
+
+  plantyuml_client:
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    ports:
+      - 9001:9001
+    volumes:
+      - /app/node_modules
+      - ./client:/app
